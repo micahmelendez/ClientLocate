@@ -1,17 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "seedcrackerx",
+  "id": "clientlocate",
   "version": "${version}",
-  "name": "SeedCrackerX",
-  "description": "Used for finding the seed of multiplayer or singleplayer worlds.",
+  "name": "ClientLocate",
+  "description": "Client-side /clocate without operator rights, plus a built-in seed cracker: find the world seed, then locate structures and biomes from it, including those added by mods and datapacks.",
   "authors": [
-    "KaptainWutax",
-    "19MisterX98"
+    "ClientLocate contributors",
+    "KaptainWutax (SeedCrackerX)",
+    "19MisterX98 (SeedCrackerX)"
   ],
-  "contact": {
-    "issues": "https://github.com/19MisterX98/SeedcrackerX/issues",
-    "sources": "https://github.com/19MisterX98/seedcrackerX/"
-  },
   "license": "MIT",
   "icon": "assets/seedcrackerx/icon.png",
   "environment": "client",
@@ -19,18 +16,31 @@
     "main": [
       "kaptainwutax.seedcrackerX.SeedCracker"
     ],
+    "seedcrackerx": [
+      "dev.clientlocate.CrackerBridge"
+    ],
+    "client": [
+      "dev.clientlocate.ClientLocate"
+    ],
     "modmenu": [
       "kaptainwutax.seedcrackerX.config.ScModMenuEntry"
     ]
   },
   "mixins": [
-    "seedcracker.mixins.json"
+    "seedcracker.mixins.json",
+    "clientlocate.mixins.json"
+  ],
+  "provides": [
+    "seedcrackerx"
   ],
   "depends": {
-    "fabricloader": ">=0.14.0",
-    "minecraft": ">=1.21 <=1.21.1"
+    "fabricloader": ">=0.16.0",
+    "minecraft": "1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
   },
   "suggests": {
+    "modmenu": "*",
     "flamingo": "*"
   }
 }

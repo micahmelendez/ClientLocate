@@ -1,234 +1,100 @@
-# SeedCrackerX [![Github All Releases](https://img.shields.io/github/downloads/19MisterX98/SeedCrackerX/total.svg)]
+# ClientLocate
 
-## Readme Language
+A client-side `/clocate` for Minecraft 1.21.1 (Fabric, Java 21) that works without operator rights, plus a
+built-in seed cracker. Find the world seed of a server, then locate structures and biomes from it. Structures
+added by mods and datapacks are included.
 
-[中文](readmes/READMEzh.md)
-[Русский](readmes/READMEru.md)
-[Українська](readmes/READMEuk.md)
-[Türkçe](readmes/READMEtr.md)
+- `/clocate` works like vanilla `/locate`, but it runs on your computer from the world seed, so the server is not asked anything.
+- The seed cracker is [SeedCrackerX](https://github.com/19MisterX98/SeedcrackerX) (MIT), merged in. When it finds the
+  seed, ClientLocate checks it against the server and saves it, so `/clocate` is ready without typing anything.
+- Structure, terrain and biome data is read from the game, every installed mod and your datapacks, the way a server loads it.
 
-## I'm active on:
+Many servers forbid seed-based locating. Check the rules before using it on a server that is not yours.
 
-- [My Discord](https://discord.gg/JRmHzqQYfp)
-- [Youtube](https://www.youtube.com/channel/UCby9ZxEjJCqmccQGF3GSYlA)
+## Install
 
-# Version Tab
+1. Install Fabric Loader and Fabric API for 1.21.1, with Java 21.
+2. Put `clientlocate-<version>.jar` in your `mods` folder.
+3. Remove a separate SeedCrackerX jar if you have one. This mod includes it, and the game refuses to start with both.
 
-| Minecraft Version | SeedCrackerX version                                                                                       | Dependencies                                                                                                                                                                                   |
-|-------------------|------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.21-1.21.1       | [2.15.0](https://github.com/19MisterX98/SeedcrackerX/releases/download/prerelease/seedcrackerX-2.15.0.jar) | [Fabric mod loader 0.14.0+](https://fabricmc.net/use/)                                                                                                                                         |
-| 1.20.6            | [2.14.7](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.14.7/seedcrackerX-2.14.7.jar)     | [Fabric mod loader 0.14.0+](https://fabricmc.net/use/)                                                                                                                                         |
-| 1.20.4            | [2.14.6](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.14.6/seedcrackerX-2.14.6.jar)     | [Fabric mod loader 0.14.0+](https://fabricmc.net/use/)                                                                                                                                         |
-| 1.20.2            | [2.14.5](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.14.5/seedcrackerX-2.14.5.jar)     | [Fabric mod loader 0.14.0+](https://fabricmc.net/use/)                                                                                                                                         |
-| 1.20-1.20.1       | [2.14.4](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.14.4/seedcrackerX-2.14.4.jar)     | [Fabric mod loader 0.14.0+](https://fabricmc.net/use/)                                                                                                                                         |
-| 1.19.4            | [2.14.2](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.14.2/seedcrackerX-2.14.2.jar)     | [Fabric mod loader 0.14.0+](https://fabricmc.net/use/)                                                                                                                                         |
-| 1.19.3            | [2.13.1](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.13.1/seedcrackerX-2.13.1.jar)     | [Fabric mod loader 0.14.0+](https://fabricmc.net/use/)                                                                                                                                         |
-| 1.19-1.19.2       | [2.13](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.13/seedcrackerX-2.13.jar)           | [Fabric mod loader 0.14.0+](https://fabricmc.net/use/)                                                                                                                                         |
-| 1.18.2            | [2.12](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.12/seedcrackerX-2.12.jar)           | [Fabric mod loader](https://fabricmc.net/use/)                                                                                                                                                 | 
-| 1.18-1.18.1       | [2.11.4](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.11.4/seedcrackerX-2.11.4.jar)     | [Fabric mod loader](https://fabricmc.net/use/)                                                                                                                                                 |
-| 1.17-1.17.1       | [2.10.1](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.10.1/seedcrackerX-2.10.1.jar)     | [Fabric mod loader](https://fabricmc.net/use/)                                                                                                                                                 |
-| 1.16.5            | [2.7](https://github.com/19MisterX98/SeedcrackerX/releases/download/2.7.1/seedcrackerX-0.2.7.jar)          | [Fabric mod loader](https://fabricmc.net/use/), [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api),  [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu/files) |
+## Use
 
-## Installation
+```
+/clocate seed [seed]                  show or set the seed for this server (checked against the server)
+/clocate structure <id or #tag> [r]   like /locate structure, r = search radius in regions (default 100)
+/clocate biome <id or #tag>           like /locate biome
+/clocate list [text]                  list locatable structures, filter by text
+/clocate sources                      show which mods and datapacks were read
+/clocate reload                       rescan after changing datapacks
+/clocate cancel                       stop a running search
+```
 
-Download and install the [fabric mod loader](https://fabricmc.net/use/)
- 
-Download the latest [release or pre-release](https://github.com/19MisterX98/SeedCrackerX/releases) of SeedCrackerX
-  
-put the .jar file in your mod directory, either %appdata%/.minecraft/mods/ folder for the vanilla launcher or your own instance folder.
-  
-#### Optional
-  
-Download the latest release of [Multiconnect](https://github.com/Earthcomputer/multiconnect/releases) or [ViaFabric](https://modrinth.com/mod/viafabric) to connect to servers on lower MC versions
-  
-## Database
+Tab completion lists every structure that the installed mods and datapacks define. In singleplayer the real seed is
+used automatically.
 
-Since the mod is used by many people, I have decided to create a Google sheet for server seeds.
-If you enable the database option in the config gui the mod will send cracked seeds from 10+ player servers directly to the Google sheet.
-You also need a minecraft license
+### Finding a seed you do not know
 
-[The Sheet](https://docs.google.com/spreadsheets/d/1tuQiE-0leW88em9OHbZnH-RFNhVqgoHhIt9WQbeqqWw/edit?usp=sharing)
+Join the server and explore. The seed cracker watches the structures and terrain you see (igloos, desert pyramids,
+jungle temples, swamp huts, shipwrecks, pillager outposts, monuments and more) and works out the seed, usually
+within a few minutes of exploring. When it succeeds, you get a chat message and the seed is saved for that server.
+See [docs/SeedCrackerX-README.md](docs/SeedCrackerX-README.md) for how the cracker works and its own commands.
 
-# Usage
+If you already know the seed (the owner can use `/seed` or read `server.properties`), run `/clocate seed <seed>`.
+The mod compares it with the hashed seed the server sends on join and refuses a wrong one.
 
-## 1.17.X and below
+## Where worldgen data comes from
 
-### Overworld
+At first use the mod reads, in this order (later ones override earlier ones, like datapacks):
 
-Run around in the world until the mod finds a dungeon. After the mod found one the cracking process starts automatically.
-If it doesn't give you a world seed, you may need to find another dungeon.
+1. the game jar (vanilla),
+2. every installed mod (`data/<namespace>/worldgen/...`),
+3. datapack folders: `<instance>/datapacks`, `config/openloader/data`, `config/paxi/datapacks`,
+   `config/clientlocate/datapacks`, plus anything in `extraDataPaths` in `config/clientlocate.json`.
 
-### The Nether
+Datapacks that only exist inside a world folder (`saves/<world>/datapacks`, or `world/datapacks` on a server) are not
+seen. If the server uses one that changes terrain, biomes or structures, copy it into `config/clientlocate/datapacks`
+and run `/clocate reload`. Use the same version as the server. `/clocate sources` shows what was loaded.
 
-Run around in the warped fungus biome until the mod finds big fungus and starts cracking.
+Example: the Cobbleverse modpack ships its gyms and Team Rocket tower in `COBBLEVERSE-DP-*.zip`. Copy that file
+into `config/clientlocate/datapacks`, and if the server also runs Terralith, keep Terralith enabled.
 
-### The End
+## How accurate is it
 
-You have to find 5 (or more) end cities or end gateways and then return to the center of the end dimension to obtain the pillar seed, after that cracking should begin.
+Placement (spacing, separation, salt, frequency, exclusion zones, stronghold rings) uses the game's own code.
+Terrain and biomes use the game's own noise generators, fed with the worldgen files of every installed mod and
+datapack, so terrain and biome mods that ship as datapacks (Terralith, for example) are part of the calculation.
+For structures built from jigsaw pools (villages, most modded structures) the real first piece is rebuilt from the
+template files, so the biome is checked where the game checks it.
 
-#### Video guides:
-- [Structures and Endpillars](https://youtu.be/aUuPSZVPH8E?t=462)
-- [warped fungus](https://youtu.be/HKjwgofhKs4)
+Checked against real servers running vanilla 1.21.1, with `/locate` output recorded at the origin:
 
-  ### Supported Decorators
-    - Dungeon
-    - End Gateway
-    - Desert Well
-    - Emerald Ore
-    - Warped Fungus
+- Vanilla, 4 seeds, Overworld, Nether and End: 151 of 156 exact.
+- Terralith 2.5.8, 2 seeds, Overworld (vanilla and Terralith structures and biomes): 146 of 148 exact.
+- Terralith plus the Cobbleverse datapack, 3 seeds, Overworld: 88 of 88 exact.
 
-## 1.18.X and higher
+The misses were all vanilla ruined portals and the mesa mineshaft.
 
-Dungeon cracking, fungus cracking don't work anymore.
+Limits:
 
-### Overworld
+- Terrain and biomes come from data files, not from mod code. A mod that changes worldgen with Java code (a custom
+  biome source or density function type) is not simulated, so results near biome borders can be wrong.
+- Your client has to load the same worldgen data as the server, same versions included.
+- Only the Overworld, Nether and End are supported.
+- Custom structure types written in code (not `minecraft:jigsaw`) are checked at the chunk centre on the surface.
+  Treat a result as "go look here".
+- Searches far away can be slow with heavy terrain mods (minutes for structures tens of thousands of blocks away).
+  `/clocate cancel` stops one.
 
-Go to the config menu via "/seedcracker gui" (1.19.3+) or "/seed gui" (before 1.19.3) and make sure that Emeralds, Gateways, Biomes, Desert wells and Warped fungi are disabled since they aren't updated and can give wrong data.
+## Build
 
-For cracking, you now need to get 40 bits of liftable structures and 32 regular bits from the listed ones:
+```
+./gradlew build      # jar in build/libs
+./gradlew test       # compares against recorded vanilla /locate results
+```
 
-  ### Supported Structures
-  
-    - Igloo - 9 regular and liftable bits
-    - Desert Pyramid - 9 regular and liftable bits
-    - Jungle Temple - 9 regular and liftable bits
-    - Swamp Hut - 9 regular and liftable bits
-    - Shipwreck - 8 regular and liftable bits
-    - Pillager Outpost - 9 liftable bits
-    - Ocean Monument - 9 regular bits
+The Terralith comparison needs the Terralith jar and a recording, see `TerralithParityTest`.
 
-Any combination is valid. For example: 3 shipwrecks, 1 pyramid and 1 igloo.
-You can track your process with "/seed data bits" (look at the bits count for liftable structures)
-A structure is found when there is an outline around it.
-After you get enough, the cracking process starts automatically. This process takes around 1-5 mins.
-The mod may ask you to find additional structures after this.
-It's more likely to happen with fewer bits and structures of the same type.
-After reducing your structure seeds, the mod will brute force your world seed via dungeon positions or hashed seed.
+## Credits and license
 
-### The Nether
-
-Fungus cracking don't work anymore, so there are no way to find nether seed using SeedcrackerX, however you can try to crack it yourself by using [Nether_Bedrock_Cracker](https://github.com/19MisterX98/Nether_Bedrock_Cracker)
-    
-### The End
-
-You have to find 5 (or more) end cities (fill up regular bits) and then return to the center of the end dimension to obtain the pillar seed, after that cracking should begin.
-
-- You need to disable end gateways!
-
-## Commands
-
-If version of your mod is older than 2.13.1, use prefix
- - `/seed` instead of `/seedcracker`
-
-  ### GUI Command
-  - `/seedcracker gui`
-  
-  Opens the config gui where you can modify settings like the server mc-version, all finders, database and rendermode.
-  There are command alternatives for most of this, but they shouldn't be used anymore.
-  
-  ### Finder Reload Command
-  - `/seedcracker finder reload`
-
-  Rescans the loaded Chunks to find structures that weren't found before.
-
-  ### Data Command
-  - `/seedcracker data clear`
-  
-  Clears all the collected data without requiring a relog. This is useful for multi-world servers.
-  
-  - `/seedcracker data bits`
-  
-  Display how many bits of information have been collected.
-  Normal bits are used for end pillar + structure cracking. Cracking starts at 32 bits.
-  Lifting bits are used for liftable structure cracking. Cracking starts at 40 bits.
-  
-  - `/seed data restore`
-  
-  When you leave a world, the mod will save currently collected structure information in a file of the .minecraft/config directory.
-  After rejoining, you can restore it with this command.
-  
-  
-  ### Debug Command
-  - `/seedcracker cracker debug`
-
-  Additional info is shown
-  
-  ### Database Command
-  - `/seedcracker database`
-  
-  Opens a [google sheet](https://docs.google.com/spreadsheets/d/1tuQiE-0leW88em9OHbZnH-RFNhVqgoHhIt9WQbeqqWw/edit?usp=sharing) that is maintained by the mod
-  
-## Video Tutorials
-
-Neil's:
-- [1.15](https://youtu.be/1ChmLi9og8Q)
-- [1.16](https://youtu.be/aUuPSZVPH8E)
-
-Dyiing's
-- [1.18](https://www.youtube.com/watch?v=tKeEyx7jIE4)
-
-Mine:
-- [Dungeon cracking & end pillar cracking](https://youtu.be/8ytfZ2MXosY)
-- [Nether cracking](https://youtu.be/HKjwgofhKs4)
-- [Structure cracking](https://youtu.be/UXVrBaOR8H0)
-
-
-## Setting up the Workspace
-
--Clone the repository.
-
--Run `gradlew genSources <idea|eclipse>`.
-
-## Building the Mod
-
--Update the version in `build.gradle` and `fabric.mod.json`.
-
--Run `gradlew build`.
-
-## API for other mods
-
-- Include seedcracker-api and jitpack in your build.gradle
-
-      repositories {
-          mavenCentral()
-          maven { url "https://jitpack.io" }
-      }
-      
-      dependencies {
-          implementation (include('com.github.19MisterX98.SeedcrackerX:seedcrackerx-api:master-SNAPSHOT')) {transitive = false}
-      }
-
-- Add a class that implements the api interface
-
-      package misterx.myMod.seedManagemnet.SeedCrackerEP
-      
-      import kaptainwutax.seedcrackerX.api.SeedCrackerAPI;
-    
-      public class SeedCrackerEP implements SeedCrackerAPI {
-          @Override
-          public void pushWorldSeed(long seed) {
-              //do something
-              Foo.bar(seed)
-          }
-      }
-
-- Tell fabric.mod.json where your entrypoint is
-
-      "entrypoints": {
-        "main": [...],
-        "client": [...],
-        "server": [...],
-        "seedcrackerx": [
-          "misterx.myMod.seedManagemnet.SeedCrackerEP"
-        ]
-      },
-
-## Contributors
-
-[KaptainWutax](https://github.com/KaptainWutax) - Author of the original mod
-
-[neil](https://www.youtube.com/watch?v=aUuPSZVPH8E) - Video Tutorials
-
-[Nekzuris](https://github.com/Nekzuris) and [ItzSkyReed](https://github.com/ItzSkyReed)  - README
-
-[19MisterX98](https://www.youtube.com/channel/UCby9ZxEjJCqmccQGF3GSYlA) - Author of SeedCrackerX
+MIT. The seed cracker is SeedCrackerX by KaptainWutax and 19MisterX98, taken at tag 2.15.0 with its history kept
+(`git log` shows it). Their copyright notice is in `LICENSE.md`, with ours below it.
