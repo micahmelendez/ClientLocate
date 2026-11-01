@@ -9,6 +9,11 @@
     "KaptainWutax (SeedCrackerX)",
     "19MisterX98 (SeedCrackerX)"
   ],
+  "contact": {
+    "homepage": "https://github.com/micahmelendez/ClientLocate",
+    "sources": "https://github.com/micahmelendez/ClientLocate",
+    "issues": "https://github.com/micahmelendez/ClientLocate/issues"
+  },
   "license": "MIT",
   "icon": "assets/seedcrackerx/icon.png",
   "environment": "client",
